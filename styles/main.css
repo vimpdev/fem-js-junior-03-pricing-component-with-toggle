@@ -1,0 +1,26 @@
+@layer reset, fonts, tokens, base, layout, components, utilities;
+
+@import url('./reset.css') layer(reset);
+@import url('./fonts.css') layer(fonts);
+@import url('./tokens.css') layer(tokens);
+
+@layer base {
+  body {
+    font-family: var(--ff-base);
+    font-weight: var(--fw-bold);
+    background-color: var(--clr-surface-page);
+    color: var(--clr-text-primary);
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    outline: 0.125rem solid var(--clr-focus, currentColor);
+    outline-offset: 0.1875rem;
+  }
+}
+
+@layer layout {}
+
+@layer components {}
+
+@layer utilities {}

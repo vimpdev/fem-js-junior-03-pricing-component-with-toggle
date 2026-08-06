@@ -1,0 +1,35 @@
+@layer tokens {
+
+  :root {
+    /* PRIMARY TOKENS */
+    --clr-white: hsl(0 100% 100%);
+    --clr-black: hsl(0 0% 0%);
+    --clr-blue-50: hsl(240 78% 98%);
+    --clr-gray-650: hsl(233 13% 49%);
+    --clr-gray-700: hsl(232 13% 33%);
+
+    --gradient-primary: linear-gradient(80deg, hsl(237 73% 79%), hsl(238 63% 64%));
+
+    /* SEMANTICS TOKENS */
+    --clr-text-primary: var(--clr-gray-650);
+    --clr-text-accent: var(--clr-gray-700);
+    --clr-text-invert: var(--clr-white);
+
+    --clr-surface-page: var(--clr-blue-50);
+    --clr-surface-card: var(--clr-white);
+    --clr-surface-card-accent: var(--gradient-primary);
+    --clr-surface-action: var(--gradient-primary);
+
+    --ff-base: Montserrat, system-ui, sans-serif;
+
+    --fs-xs: 0.8125rem;
+    --fs-sm: 0.9375rem;
+    --fs-md: 1.125rem;
+    --fs-lg: 2rem;
+    --fs-xl: 4.5rem;
+
+    --fw-bold: 700;
+
+    --transition-fast: .25s ease-out;
+  }
+}
