@@ -15,13 +15,15 @@
 <body>
 
   <header class="header">
-    <h1>Our Pricing</h1>
-
-    <div class="toggle-plan">
-      <span class="toggle-plan__label">Annually</span>
-      <input type="checkbox" name="toggle" id="toggle" role="switch" aria-label="Billing period"
-        class="toggle-plan__switch" checked>
-      <span class="toggle-plan__label">Monthly</span>
+    <div class="header__inner container stack">
+      <h1 class="header__title">Our Pricing</h1>
+      <div class="toggle-plan">
+        <span>Annually</span>
+        <label for="toggle" class="toggle-plan__switch">
+          <input type="checkbox" name="toggle" id="toggle" role="switch" aria-label="Billing period" checked>
+        </label>
+        <span>Monthly</span>
+      </div>
     </div>
   </header>
 

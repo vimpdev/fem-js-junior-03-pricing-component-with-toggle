@@ -1,4 +1,4 @@
-@layer reset, fonts, tokens, base, layout, components, utilities;
+@layer reset, fonts, tokens, base, layout, components, utilities, user-prefs;
 
 @import url('./reset.css') layer(reset);
 @import url('./fonts.css') layer(fonts);
@@ -6,11 +6,26 @@
 
 @layer base {
   body {
+    position: relative;
+    isolation: isolate;
+
     font-family: var(--ff-base);
     font-weight: var(--fw-bold);
     background-color: var(--clr-surface-page);
     color: var(--clr-text-primary);
     overflow-x: clip;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-inline-end: 0;
+      inset-block-start: 0;
+
+      inline-size: 23.4375rem;
+      block-size: 41.125rem;
+      background: url('../assets/images/bg-top.svg') no-repeat;
+      translate: 12.25rem -2.25rem;
+    }
   }
 
   :focus-visible {
@@ -19,8 +34,113 @@
   }
 }
 
-@layer layout {}
+@layer layout {
+  .container {
+    inline-size: clamp(20.4375rem, 87vw, 65.625rem);
+    margin-inline: auto;
+  }
 
-@layer components {}
+  .header__inner {
+    --stack-space: 2.45em;
 
-@layer utilities {}
+    padding-block-start: 4rem;
+    align-items: center;
+  }
+}
+
+@layer components {
+
+  .header__title {
+    font-size: var(--fs-lg);
+    line-height: 1.25;
+  }
+
+  .toggle-plan {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6em;
+    font-size: var(--fs-sm);
+  }
+
+  .toggle-plan__switch {
+    position: relative;
+
+    inline-size: 3.5rem;
+    block-size: 2rem;
+    background: var(--gradient-primary);
+    border-radius: 99rem;
+    opacity: 1;
+    transition: opacity var(--transition-fast);
+
+    input {
+      position: absolute;
+      inset: 0;
+
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    &:has(input:focus-visible) {
+      outline: 0.125rem solid var(--clr-focus, currentColor);
+      outline-offset: 0.1875rem;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-end: 0.25rem;
+      inset-block-start: 0.25rem;
+
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      background-color: var(--clr-white);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: var(--transition-fast);
+    }
+
+    &:has(input:not(:checked))::after {
+      translate: -1.5rem 0;
+    }
+  }
+
+  @media (hover:hover) {
+    .toggle-plan__switch:hover {
+      opacity: .5;
+    }
+  }
+}
+
+@layer utilities {
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-space, 1em);
+  }
+}
+
+@layer user-prefs {
+
+  /* Respect the user's reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .toggle-plan__switch::after {
+      transition: none;
+    }
+  }
+
+  /* Restore the native checkbox in forced-colors mode */
+  @media (forced-colors: active) {
+    .toggle-plan__switch input {
+      opacity: 1;
+      appearance: auto;
+    }
+
+    .toggle-plan__switch::after {
+      content: none;
+    }
+  }
+}
