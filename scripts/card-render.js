@@ -4,7 +4,11 @@ const $pricingList = document.getElementById("pricing-list");
 function createPricingCard(plan, billingCycle) {
   // Card
   const card = document.createElement("li");
-  card.classList.add("pricing-card");
+  card.classList.add("pricing-card", "stack");
+
+  if (plan.featured) {
+    card.classList.add("pricing-card--featured")
+  }
 
   // Name
   const name = document.createElement("h2");
@@ -13,7 +17,7 @@ function createPricingCard(plan, billingCycle) {
 
   // Price
   const price = document.createElement("p");
-  price.classList.add("pricing-card__price");
+  price.classList.add("pricing-card__price", "cluster");
   const currency = document.createElement("span");
   currency.classList.add("pricing-card__currency")
   currency.textContent = "$";
@@ -24,7 +28,7 @@ function createPricingCard(plan, billingCycle) {
 
   // Features
   const features = document.createElement("ul");
-  features.classList.add("pricing-card__features");
+  features.classList.add("pricing-card__features", "stack");
   plan.features.forEach(item => {
     const feature = document.createElement("li");
     feature.classList.add("pricing-card__feature")
