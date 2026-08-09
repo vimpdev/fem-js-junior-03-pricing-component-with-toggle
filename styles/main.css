@@ -9,6 +9,10 @@
     position: relative;
     isolation: isolate;
 
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-items: center;
+
     font-family: var(--ff-base);
     font-weight: var(--fw-bold);
     background-color: var(--clr-surface-page);
@@ -25,6 +29,12 @@
       block-size: 41.125rem;
       background: url('../assets/images/bg-top.svg') no-repeat;
       translate: 12.25rem -2.25rem;
+      z-index: -1;
+      pointer-events: none;
+
+      @media (width >=68rem) {
+        translate: 0 0;
+      }
     }
   }
 
@@ -40,16 +50,38 @@
     margin-inline: auto;
   }
 
+  .header {
+    padding-block-start: 4rem;
+
+    @media (width >=68rem) {
+      padding-block-start: 4.4rem;
+    }
+  }
+
   .header__inner {
     --stack-space: 2.45em;
-
-    padding-block-start: 4rem;
     align-items: center;
+  }
+
+  .pricing-list {
+    margin-block-start: 5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2em;
+
+    @media (width >=68rem) {
+      margin-block-start: 2.85rem;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      gap: 0;
+    }
   }
 }
 
 @layer components {
 
+  /* HEADER */
   .header__title {
     font-size: var(--fs-lg);
     line-height: 1.25;
@@ -107,9 +139,155 @@
     }
   }
 
+  /* CARDS */
+  .pricing-card {
+    inline-size: 100%;
+    padding: 1.95em 1.95em;
+    text-align: center;
+    background-color: var(--clr-surface-card);
+    border-radius: 0.625rem;
+
+    @media (width >=48rem) {
+      max-inline-size: 38rem;
+    }
+  }
+
+  .pricing-card--featured {
+    background: var(--clr-surface-card-accent);
+    color: var(--clr-text-inverse);
+
+    .pricing-card__price {
+      color: inherit;
+    }
+
+    .pricing-card__link {
+      --clr-focus: var(--clr-white);
+      background: var(--clr-surface-card);
+      color: var(--clr-text-secondary);
+    }
+
+
+    @media (width >=68rem) {
+      padding-block: 3.4em;
+    }
+  }
+
+  .pricing-card__name {
+    font-size: var(--fs-md);
+    line-height: 1.55;
+  }
+
+  .pricing-card__price {
+    margin-block-start: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .4em;
+    color: var(--clr-text-accent);
+  }
+
+  .pricing-card__currency {
+    font-size: var(--fs-xl);
+    line-height: 1.25;
+  }
+
+  .pricing-card__amount {
+    font-size: var(--fs-xx);
+    font-weight: inherit;
+    line-height: 1;
+    letter-spacing: -0.028em;
+  }
+
+  .pricing-card__features {
+    --stack-space: 0;
+
+    inline-size: 100%;
+    margin-block-start: 2rem;
+
+    li {
+      padding-block: .815em;
+      font-size: var(--fs-sm);
+      line-height: 1.85;
+      text-align: center;
+      border-top: 0.0625rem solid color-mix(in srgb, currentColor 25%, transparent);
+    }
+
+    li:last-of-type {
+      border-bottom: 0.0625rem solid color-mix(in srgb, currentColor 25%, transparent);
+    }
+  }
+
+  .pricing-card__link {
+    --clr-focus: var(--clr-blue-500);
+
+    inline-size: 100%;
+    display: block;
+    margin-block-start: 1.95rem;
+    padding-block: 1.01em;
+    font-size: var(--fs-xs);
+    text-align: center;
+    letter-spacing: 0.116em;
+    line-height: 1.25;
+    background: var(--clr-surface-action);
+    color: var(--clr-text-inverse);
+    border: 0.0625rem solid var(--clr-border, transparent);
+    border-radius: 0.375rem;
+    transition: color var(--transition-fast);
+  }
+
+  /* ATTRIBUTION */
+  .attribution {
+    padding: 3em 0 2em;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+    text-align: center;
+    color: var(--clr-text-accent);
+
+    a {
+      position: relative;
+      margin-inline: .35rem;
+      border-radius: .15em;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block-end: -0.125rem;
+
+        inline-size: 100%;
+        block-size: 0.125rem;
+        background-color: currentColor;
+        transform: scaleX(1);
+        transform-origin: center;
+        transition: transform var(--transition-fast);
+        pointer-events: none;
+      }
+
+      &:focus-visible::after {
+        transform: scaleX(0);
+      }
+    }
+  }
+
+  /* HOVER */
   @media (hover:hover) {
     .toggle-plan__switch:hover {
       opacity: .5;
+    }
+
+    .pricing-card__link:hover {
+      --clr-border: currentColor;
+
+      background: transparent;
+      color: var(--clr-text-secondary);
+    }
+
+    .pricing-card--featured .pricing-card__link:hover {
+      color: var(--clr-text-inverse);
+    }
+
+    .attribution a:hover::after {
+      transform: scaleX(0);
     }
   }
 }

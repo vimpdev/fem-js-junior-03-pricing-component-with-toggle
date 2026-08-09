@@ -5,6 +5,7 @@
     --clr-white: hsl(0 100% 100%);
     --clr-black: hsl(0 0% 0%);
     --clr-blue-50: hsl(240 78% 98%);
+    --clr-blue-500: hsl(237 63% 65%);
     --clr-gray-650: hsl(233 13% 49%);
     --clr-gray-700: hsl(232 13% 33%);
 
@@ -12,8 +13,9 @@
 
     /* SEMANTICS TOKENS */
     --clr-text-primary: var(--clr-gray-650);
+    --clr-text-secondary: var(--clr-blue-500);
     --clr-text-accent: var(--clr-gray-700);
-    --clr-text-invert: var(--clr-white);
+    --clr-text-inverse: var(--clr-white);
 
     --clr-surface-page: var(--clr-blue-50);
     --clr-surface-card: var(--clr-white);
@@ -26,9 +28,11 @@
     --fs-sm: 0.9375rem;
     --fs-md: 1.125rem;
     --fs-lg: 2rem;
-    --fs-xl: 4.5rem;
+    --fs-xl: 2.5rem;
+    --fs-xx: 4.5rem;
 
     --fw-bold: 700;
+    --fw-medium: 500;
 
     --transition-fast: .25s ease-out;
   }
