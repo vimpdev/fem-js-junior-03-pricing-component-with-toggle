@@ -17,7 +17,7 @@ The project uses semantic HTML, modern CSS features, and vanilla JavaScript with
 ## Links
 
 - [**Live Preview**](https://vimpdev.github.io/fem-js-junior-03-pricing-component-with-toggle/)
-<!-- - [**Frontend Mentor Solution**]() -->
+- [**Frontend Mentor Solution**](https://www.frontendmentor.io/solutions/pricing-component-with-toggle-data-driven-ui-with-vanilla-js-BmyVaZsRy6)
 
 ---
 
@@ -139,13 +139,13 @@ JavaScript is responsible for the billing state, while CSS controls the visual p
 
 ## What I Learned
 
-- Structuring a small JavaScript application using ES modules.
-- Separating data from DOM rendering.
-- Rendering repeated UI from structured data.
-- Using CSS Cascade Layers to organize styles.
-- Working with modern CSS selectors such as `:has()` and `:not()`.
-- Deriving UI from the state of a native form control.
-- Building responsive layouts with CSS Grid, Flexbox, and logical properties.
+- Separating pricing data from DOM rendering made the JavaScript easier to reason about. The plan data is kept in `pricing-data.js`, while `card-render.js` is responsible for creating the cards.
+
+- The billing toggle was initially more challenging because the checkbox state had to control both the displayed prices and the accessible state. I solved this by deriving a `billingCycle` value from the checkbox state and using it to update the UI.
+
+- I used `:has(input:not(:checked))` to move the toggle knob with CSS instead of using JavaScript for the visual state. This helped keep the billing logic in JavaScript while leaving presentation to CSS.
+
+- Using ES modules helped me separate responsibilities as the project grew. If I extended the project further, I would consider extracting the toggle logic into its own module.
 
 ---
 

@@ -46,7 +46,8 @@
 
 @layer layout {
   .container {
-    inline-size: clamp(20.4375rem, 87vw, 65.625rem);
+    /* inline-size: clamp(20.4375rem, 87vw, 65.625rem); */
+    inline-size: min(calc(100% - 3rem), 65.625rem);
     margin-inline: auto;
   }
 

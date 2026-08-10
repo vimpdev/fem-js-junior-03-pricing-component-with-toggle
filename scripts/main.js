@@ -3,15 +3,23 @@ import renderPricingCards from "./card-render.js";
 
 const $toggle = document.getElementById("toggle");
 
-function getBillingCicle() {
+function getBillingCycle() {
   return $toggle.checked ? "monthly" : "annually";
 }
 
-$toggle.addEventListener("change", () => {
-  renderPricingCards(pricingPlans, getBillingCicle());
-});
+function updatePricing() {
+  const billingCycle = getBillingCycle();
+
+  $toggle.setAttribute("aria-label", billingCycle === "monthly" ? "Monthly billing" : "Annual billing");
+
+  renderPricingCards(pricingPlans, billingCycle);
+}
 
 function main() {
-  renderPricingCards(pricingPlans, getBillingCicle());
+  updatePricing();
 }
+
+
 main();
+
+$toggle.addEventListener("change", updatePricing);
